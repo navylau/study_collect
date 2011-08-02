@@ -1,7 +1,3 @@
-
-
-
-
 1. git tag
 
 show all tag:
@@ -19,6 +15,12 @@ create annotated tag to current commit:
 create annotated tag to the special commit:
 	git tag -a v4.2 9fceb02de3
 
+push local tag to remote repository
+	git push --tag
+
+	git remote origin v4.2
+
+	git push origin --tag
 note:
 lightweight: no comment
 annotated: with comment
@@ -69,7 +71,8 @@ git log --after="2011-5-1"  --before="2011-5-31" --pretty=short
 
 	git diff
 	
-	git diff --staged
+	比较已暂存内容和HEAD 差别
+	git diff --staged    or  --cached
 
 	git diff HEAD
 
@@ -84,8 +87,56 @@ git log --after="2011-5-1"  --before="2011-5-31" --pretty=short
 	#diff slave HEAD state from master's "HEAD" state (the "HEAD" state of master is that state while slave was checkouted from master. not be sure the master HEAD state)
 	git diff master ...slave
 
+4. git commit 
+	
+	git commit	
 
-4. 
+	git commit -m "xxxxx"
+
+	修改最后的提交
+	git commit --amend
+	ie:
+	$ git commit -m 'initial commit'
+	$ git add forgotten_file
+	$ git commit --amend
+
+5. git checkout
+
+	git checkout -b bran1
+
+	git checkout -b bran1 origin/bran2
+
+	  撤销对文件的修改
+	git checkout -- main.c input.c
+
+6. git reset
+
+	撤销已暂存的文件
+	git reset HEAD main.c input.c
+
+
+##############################remote repository###############################
+
+7. git remote
+
+	查看当前分支的远程仓库名称
+	git remote
+	
+	查看当前分支的远程仓库地址（克隆地址）
+	git remote -v
+	
+	查看当前分支的远程仓库详细信息
+	git remote show origin
+
+	修改远程仓库的名字 pb --> paul
+	git remote rename pb paul
+
+	删除远程仓库
+	git remote rm paul
+
+
+8. git push 
+
 git push [远程名] [本地分支]:[远程分支]
 
 一般是忽略远程分支名，即本地分支名和远程分支名是同名
@@ -95,13 +146,14 @@ git pull [remote-name] [branch-name]
 git remote show [remote-name]
 git remote rename pb paul
 
-5. git rebase
+9. git pull
+
+10. git rebase
 
 删除远程分支
 git push origin :serverfix
 
-6. 查看某个文件的每行详细提交历史 line12 --> line22 
+11. 查看某个文件的每行详细提交历史 line12 --> line22 
 git blame -L 12,22 simplegit.rb
-
 
 
