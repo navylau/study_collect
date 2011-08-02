@@ -1,0 +1,107 @@
+
+
+
+
+1. git tag
+
+show all tag:
+	git tag
+
+show special tag:
+	git tag -l *.*
+
+create lightweight tag to current commit:
+	git tag v4.01
+
+create annotated tag to current commit:
+	git tag -a v4.01 -m "special function"
+
+create annotated tag to the special commit:
+	git tag -a v4.2 9fceb02de3
+
+note:
+lightweight: no comment
+annotated: with comment
+
+
+2. git log
+
+show more details about the latest 3 commit:
+	git log -p -3
+
+show simple details(diffstat) about commit:
+	git log --stat
+
+show special file commit history:
+	git log -- arch/arm/mach-tegra/board-nvodm.c
+
+show all commits about a author:
+	git log --author=navy
+
+show times about the author commited
+	git log --author=navy | grep navy | wc -l
+
+show format commit
+	git log --pretty
+
+%H 提交对象(commit)的完整哈希字串
+%h 提交对象的简短哈希字串
+%T 树对象(tree)的完整哈希字串
+%t 树对象的简短哈希字串
+%P 父对象(parent)的完整哈希字串
+%p 父对象的简短哈希字串
+%an 作者(author)的名字
+%ae 作者的电子邮件地址
+%ad 作者修订日期(可以用 --date= 选项定制格式)
+%ar 作者修订日期,按多久以前的方式显示
+%cn 提交者(committer)的名字
+%ce 提交者的电子邮件地址
+%cd 提交日期
+%cr 提交日期,按多久以前的方式显示
+%s 提交说明
+git log --date=short --pretty=format:"%h %an %ad %s"
+git log --date=iso --pretty=format:"%h %an %ad %s"
+
+git log --pretty=medium -- drivers/input/keyboard/so340010_kbd.c
+git log --after="2011-5-1"  --before="2011-5-31" --pretty=short
+
+3. git diff
+
+	git diff
+	
+	git diff --staged
+
+	git diff HEAD
+
+	git diff v1.6.0 -- main.c
+	
+	git diff v1.5 v.16
+
+	git diff v1.5 v1.6 -- main.c
+	
+	git diff v1.5 v1.6 --stat
+
+	#diff slave HEAD state from master's "HEAD" state (the "HEAD" state of master is that state while slave was checkouted from master. not be sure the master HEAD state)
+	git diff master ...slave
+
+
+4. 
+git push [远程名] [本地分支]:[远程分支]
+
+一般是忽略远程分支名，即本地分支名和远程分支名是同名
+git push [remote-name] [branch-name]
+
+git pull [remote-name] [branch-name]
+git remote show [remote-name]
+git remote rename pb paul
+
+5. git rebase
+
+删除远程分支
+git push origin :serverfix
+
+6. 查看某个文件的每行详细提交历史 line12 --> line22 
+git blame -L 12,22 simplegit.rb
+
+
+
